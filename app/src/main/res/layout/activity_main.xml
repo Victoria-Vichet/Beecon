@@ -110,4 +110,10 @@
         android:layout_alignLeft="@+id/listView"
         android:layout_alignStart="@+id/listView" />
 
+    <TextView
+        android:id="@+id/devicesTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"/>
+
 </RelativeLayout>

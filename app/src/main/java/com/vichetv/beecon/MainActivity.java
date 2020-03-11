@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity  {
     private BluetoothAdapter BA;
     private Set<BluetoothDevice>pairedDevices;
     ListView lv;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends Activity  {
 
         BA = BluetoothAdapter.getDefaultAdapter();
         lv = (ListView)findViewById(R.id.listView);
+        tv = (TextView)findViewById(R.id.devicesTest);
 
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
@@ -90,27 +93,8 @@ public class MainActivity extends Activity  {
     }
 
     public void listNew(View v){
-        BroadcastReceiver mReceiver;
-        final List<String> devices= new ArrayList<>();
-        mReceiver = new BroadcastReceiver() {
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-                if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    String deviceInfo=device.getName() + "\n" + device.getAddress();
-                    devices.add(deviceInfo);
-                    Log.i("In action_found", "A device found");
-                }
-                else if(BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-                    Log.i("In discovery started", "Discovery started");
-                }
-                else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                    Log.i("In discovery finished", "Discovery finished");
-                }
-            }
-        };
-
-
+        BroadcastReceiverBee mReceiver;
+        mReceiver = new BroadcastReceiverBee(this);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_FOUND);
@@ -118,22 +102,24 @@ public class MainActivity extends Activity  {
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
-
-
         if(BA.isEnabled())
             Log.i("Status", "Bluetooth enabled");
         if(BA.isDiscovering())
             BA.cancelDiscovery();
         BA.startDiscovery();
-        System.out.println("test1");
         if(BA.isDiscovering()) {
-            System.out.println("test2");
             Toast.makeText(getApplicationContext(), "Discovering",Toast.LENGTH_LONG).show();
 
         }
+    }
 
-        final ArrayAdapter adapter = new  ArrayAdapter(this,android.R.layout.simple_list_item_1, devices);
-        lv.setAdapter(adapter);
+    protected void handleNewBluetoothDevice(ArrayList<BluetoothDevice> arrayList){
+        List<String> list = new ArrayList<>();
+        for(BluetoothDevice bt : arrayList) list.add(bt.getName());
+        Toast.makeText(getApplicationContext(), "Showing Visible Devices",Toast.LENGTH_SHORT).show();
+
+
+        tv.setText(list.toString());
     }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
