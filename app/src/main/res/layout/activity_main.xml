@@ -11,7 +11,7 @@
     tools:context=".MainActivity"
     android:transitionGroup="true">
 
-    <TextView android:text="Bluetooth Example"
+    <TextView android:text="BeeconApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textview"
@@ -22,33 +22,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tutorials point"
+        android:text="V1.0"
         android:id="@+id/textView"
         android:layout_below="@+id/textview"
         android:layout_centerHorizontal="true"
-        android:textColor="#ff7aff24"
+        android:textColor="#00008B"
         android:textSize="35dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_width="249dp"
+        android:layout_height="352dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/bee"
         android:theme="@style/Base.TextAppearance.AppCompat" />
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Turn On"
         android:id="@+id/button"
+        android:layout_width="86dp"
+        android:layout_height="59dp"
         android:layout_below="@+id/imageView"
+        android:layout_marginEnd="-21dp"
+        android:layout_marginRight="-21dp"
         android:layout_toStartOf="@+id/imageView"
         android:layout_toLeftOf="@+id/imageView"
         android:clickable="true"
-        android:onClick="on" />
+        android:onClick="on"
+        android:text="Turn On" />
 
     <Button
         android:layout_width="wrap_content"
@@ -60,14 +62,16 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List devices"
-        android:onClick="list"
         android:id="@+id/button3"
+        android:layout_width="88dp"
+        android:layout_height="72dp"
         android:layout_below="@+id/imageView"
+        android:layout_marginStart="-23dp"
+        android:layout_marginLeft="-23dp"
+        android:layout_toEndOf="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+        android:onClick="listNew"
+        android:text="List devices" />
 
     <Button
         android:layout_width="wrap_content"
@@ -88,15 +92,28 @@
         android:layout_alignStart="@+id/button"
         android:layout_below="@+id/textView2" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/visibleDevices"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paired devices:"
+        android:text="All devices:"
         android:id="@+id/textView2"
-        android:textColor="#ff34ff06"
+        android:textColor="#00008B"
         android:textSize="25dp"
         android:layout_below="@+id/button4"
         android:layout_alignLeft="@+id/listView"
         android:layout_alignStart="@+id/listView" />
+
+    <TextView
+        android:id="@+id/devicesTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"/>
 
 </RelativeLayout>
