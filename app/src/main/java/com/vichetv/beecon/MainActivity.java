@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends Activity  {
-    Button b1,b2,b3,b4;
+    Button b1,b2,b3;
     private BluetoothAdapter BA;
     private Set<BluetoothDevice>pairedDevices;
     ListView lv;
@@ -44,11 +44,12 @@ public class MainActivity extends Activity  {
         b1 = (Button) findViewById(R.id.button);
         b2=(Button)findViewById(R.id.button2);
         b3=(Button)findViewById(R.id.button3);
-        b4=(Button)findViewById(R.id.button4);
+
 
         BA = BluetoothAdapter.getDefaultAdapter();
         lv = (ListView)findViewById(R.id.listView);
-        tv = (TextView)findViewById(R.id.devicesTest);
+        tv=(TextView)findViewById(R.id.devicesTest);
+
 
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
@@ -115,7 +116,7 @@ public class MainActivity extends Activity  {
 
     protected void handleNewBluetoothDevice(ArrayList<BluetoothDevice> arrayList){
         List<String> list = new ArrayList<>();
-        for(BluetoothDevice bt : arrayList) list.add(bt.getName());
+        for(BluetoothDevice bt : arrayList) list.add(bt.getAddress());
         Toast.makeText(getApplicationContext(), "Showing Visible Devices",Toast.LENGTH_SHORT).show();
 
 

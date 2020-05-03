@@ -41,8 +41,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="86dp"
-        android:layout_height="59dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_marginEnd="-21dp"
         android:layout_marginRight="-21dp"
@@ -55,16 +55,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get visible"
-        android:onClick="visible"
+        android:text="Turn off"
+        android:onClick="off"
         android:id="@+id/button2"
         android:layout_alignBottom="@+id/button"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="88dp"
-        android:layout_height="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_marginStart="-23dp"
         android:layout_marginLeft="-23dp"
@@ -73,15 +73,7 @@
         android:onClick="listNew"
         android:text="List devices" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="turn off"
-        android:onClick="off"
-        android:id="@+id/button4"
-        android:layout_below="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
 
     <ListView
         android:layout_width="wrap_content"
@@ -106,7 +98,7 @@
         android:id="@+id/textView2"
         android:textColor="#00008B"
         android:textSize="25dp"
-        android:layout_below="@+id/button4"
+        android:layout_below="@+id/button"
         android:layout_alignLeft="@+id/listView"
         android:layout_alignStart="@+id/listView" />
 
